@@ -1,4 +1,3 @@
-import mongoose from 'mongoose';
 import { validateMongoDBConnection } from "./helpers/validate-mongodb-connection";
 import { validateRedisDBConnection } from "./helpers/validate-redis-connection";
 import { http } from "./transport/http/app";

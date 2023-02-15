@@ -10,6 +10,8 @@ http.post("/", (req, res) => {
 })
 
 // return rpc custom error
-http.all('*', async (req, res) => {});
+http.all('*', async (req, res) => {
+    
+});
   
 export { http };
