@@ -1,6 +1,6 @@
 import { validateMongoDBConnection } from "./helpers/validate-mongodb-connection";
 import { validateRedisDBConnection } from "./helpers/validate-redis-connection";
-import { http } from "./transport/http/app";
+import { listen } from "./transport/http";
 
 const start = async () => {
 
@@ -8,9 +8,9 @@ const start = async () => {
     await validateMongoDBConnection()
     await validateRedisDBConnection()
 
-    // initiate http transport layer (Express)
-    const port = process.env.HTTP_PORT ?? 3000;
-    http.listen(port, () => { console.log(`Listening on port ${port}`) });
+    // initiate http transport layer
+    const port = process.env.HTTP_PORT ?? '3000';
+    listen(parseInt(port), () => { console.log(`Listening on port ${port}`) });
 };
 
 start();

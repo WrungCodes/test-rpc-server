@@ -1,0 +1,1 @@
+export const jsonResponse = (data = {}) => JSON.stringify(data);
