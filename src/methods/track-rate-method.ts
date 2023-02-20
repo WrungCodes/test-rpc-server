@@ -2,10 +2,11 @@ import { trackRate } from "../actions/track-rate"
 import { paramsRequired } from "../transport/http/error";
 import { handleUnautorizedRequest } from "../transport/http/handle-unauthorized-request";
 
-export const trackRateMethod = async (request: any, response: any, params: any[]) => {
+export const trackRateMethod = async (request: any, response: any, params: any[], id?: string) => {
     try {
+        
         if(!params[0] || !params[0].name || !params[0].symbol || !params[0].enabled) {
-            response.end(paramsRequired())
+            response.end(paramsRequired(id))
         }
 
         // validate api key for admin tracking

@@ -1,6 +1,6 @@
 import { getRates } from "../actions/get-rates"
 
-export const getRatesMethod = async (_request: any, _response: any, _params: any) => {
+export const getRatesMethod = async (_request: any, _response: any, _params: any, _id: any) => {
     try {
         return { 'rates': await getRates()}
     } catch (error: any) {

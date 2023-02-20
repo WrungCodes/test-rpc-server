@@ -24,7 +24,7 @@ export const handlePOST = async (request: any, response: any) => {
       if (!func) return response.end(methodRequired(id));
   
       try {
-        const result = await func(request, response, params);
+        const result = await func(request, response, params, id);
         return response.end(jsonResponse({result: result, error: null}, id));
       } catch(error) {
         return response.end(jsonResponse({result: null, error}, id));
