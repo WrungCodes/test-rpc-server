@@ -1,8 +1,11 @@
 import { validateMongoDBConnection } from "./helpers/validate-mongodb-connection";
 import { validateRedisDBConnection } from "./helpers/validate-redis-connection";
 import { listen } from "./transport/http";
+import * as dotenv from 'dotenv'
 
 const start = async () => {
+
+    dotenv.config()
 
     // validate external dependencies
     await validateMongoDBConnection()
