@@ -6,13 +6,17 @@ import { getAllCrypto as getAllCryptoUnCached } from "../repository/get-all-cryp
 const key = 'get-all-crypto'
 
 export const addCrypto = async (name: string, symbol: string, enabled: boolean) : Promise<CryptoDoc> => {
-    await cache.connect()
+    try {
+        await cache.connect()
 
-    const value = await addCryptoUnCached(name,symbol,enabled)
+        const value = await addCryptoUnCached(name,symbol,enabled)
+        
+        await cache.put(key, await getAllCryptoUnCached())
+        await cache.disconnect()
     
-    await cache.put(key, await getAllCryptoUnCached())
+        return value;
 
-    await cache.disconnect()
-
-    return value;
+    } catch (error) {
+        throw new Error(`${error}`);
+    }
 }

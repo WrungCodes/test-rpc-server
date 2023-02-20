@@ -13,22 +13,21 @@ export const handlePOST = async (request: any, response: any) => {
       if(!req_body){
         return handleInvalidRequest(request, response)
       }
+      
+      const { id, method, params } = JSON.parse(req_body);
 
-      const { method, params } = JSON.parse(req_body);
-
-      if (!method) return response.end(methodNotFound());
-      if (!params) return response.end(paramsRequired());
+      if (!method) return response.end(methodNotFound(id));
+      if (!params) return response.end(paramsRequired(id));
   
       const func = find_method(method);
 
-      if (!func) return response.end(methodRequired());
+      if (!func) return response.end(methodRequired(id));
   
       try {
-        const result = await func(params);
-        return response.end(jsonResponse({result: result, error: {}}));
+        const result = await func(request, response, params);
+        return response.end(jsonResponse({result: result, error: null}, id));
       } catch(error) {
-        console.log(error)
-        return response.end(jsonResponse({result: {}, error}));
+        return response.end(jsonResponse({result: null, error}, id));
       }
     });
 }

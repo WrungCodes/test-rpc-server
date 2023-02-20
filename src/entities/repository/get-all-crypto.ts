@@ -1,5 +1,9 @@
 import { Crypto, CryptoDoc } from "../models/crypto"
 
 export const getAllCrypto = async () : Promise<CryptoDoc[]> => {
-    return await Crypto.find({ enabled: true })
+    try {
+        return await Crypto.find({ enabled: true })
+    } catch (error: any) {
+        throw new Error(`${error.message}`);
+    }
 }

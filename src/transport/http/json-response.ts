@@ -1,1 +1,1 @@
-export const jsonResponse = (data = {}) => JSON.stringify(data);
+export const jsonResponse = (data = {}, id?: string) => id ? JSON.stringify({ jsonrpc: '2.0', id, ...data}) : JSON.stringify({ jsonrpc: '2.0', ...data});
