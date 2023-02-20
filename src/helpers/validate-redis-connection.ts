@@ -5,4 +5,5 @@ import { redisConnection } from "./redis-connection";
  */
 export const validateRedisDBConnection = async () => {
     await redisConnection();
+    console.log('Connected to Redis');
 }

@@ -1,6 +1,6 @@
 import { validateMongoDBConnection } from "./helpers/validate-mongodb-connection";
 import { validateRedisDBConnection } from "./helpers/validate-redis-connection";
-import { listen } from "./transport/http";
+import { httpserver } from "./transport/http";
 import * as dotenv from 'dotenv'
 
 const start = async () => {
@@ -13,7 +13,7 @@ const start = async () => {
 
     // initiate http transport layer
     const port = process.env.HTTP_PORT ?? '3000';
-    listen(parseInt(port), () => { console.log(`Listening on port ${port}`) });
+    httpserver.listen(parseInt(port), () => { console.log(`Listening on port ${port}`) });
 };
 
 start();

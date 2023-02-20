@@ -15,21 +15,39 @@ export class Redis implements CacheLayer {
 
     async check(key: string) : Promise<boolean>
     {
-        const reply = await this.client?.exists(key)
-        if (reply === 1) { return true }
-        return false;
+        try {
+            const reply = await this.client?.exists(key)
+            if (reply === 1) { return true }
+            return false;
+        } catch (error: any) {
+            throw new Error(`${error.message}`);
+        }
     }
 
     async put(key: string, value: any, expireAfter: number = 86400) 
     {
-        await this.client?.setEx(key, expireAfter, value)
+        try {
+         await this.client?.set(key, JSON.stringify(value), { EX: expireAfter })
+        } catch (error: any) {
+            throw new Error(`${error.message}`);
+        }
     }
 
     async get(key: string) {
-        return await this.client?.get(key)
+        try {
+            const reply = await this.client?.get(key);
+            if(reply != null || reply != undefined) { return JSON.parse(reply) }
+            return reply 
+        } catch (error: any) {
+            throw new Error(`${error.message}`);
+        }
     }
 
     async disconnect() {
-        await this.client?.disconnect()
+        try {
+            await this.client?.disconnect()
+        } catch (error: any) {
+            throw new Error(`${error.message}`);
+        }
     }
 }

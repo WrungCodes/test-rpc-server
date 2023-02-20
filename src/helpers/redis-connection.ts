@@ -10,7 +10,7 @@ export const redisConnection = async () : Promise<RedisClientType> => {
     try {
         const client: RedisClientType = createClient({ url: process.env.REDIS_URI });
         await client.connect();
-        
+
         return client;
     } catch (err) {
         throw new Error(`REDIS connection failed: ${err}`);

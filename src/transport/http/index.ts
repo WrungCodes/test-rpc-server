@@ -5,17 +5,14 @@ import { getRatesMethod } from "../../methods/get-rate-method";
 
 let methods = new Map<string, any>();
 
-export const listen = (port: number, callback: Function) => {
-    callback()
-    http.createServer((request: http.IncomingMessage, response: http.ServerResponse<http.IncomingMessage>) => { 
+export const httpserver = http.createServer((request: http.IncomingMessage, response: http.ServerResponse<http.IncomingMessage>) => { 
 
-        // register all methods here ...
-        add_method('get_rate', getRatesMethod)
-        add_method('track_rate', trackRateMethod)
+    // register all methods here ...
+    add_method('get_rate', getRatesMethod)
+    add_method('track_rate', trackRateMethod)
 
-        handleRequest(request, response)
-     })
-}
+    handleRequest(request, response)
+})
 
 export const add_method = (name: string, func: any) => { methods.set(name, func) }
 export const find_method = (name: string) => { return methods.get(name) }

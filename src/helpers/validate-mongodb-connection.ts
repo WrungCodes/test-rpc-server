@@ -4,6 +4,7 @@ import mongoose from "mongoose";
  * Check if MongoDB ENV Variables is present and Test the connection
  */
 export const validateMongoDBConnection = async () => {
+    console.log(process.env.MONGO_URI)
     if (!process.env.MONGO_URI) {
         throw new Error('MONGO_URI must be defined');
     }
