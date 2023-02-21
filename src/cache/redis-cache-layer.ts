@@ -43,6 +43,17 @@ export class Redis implements CacheLayer {
         }
     }
 
+    async delete(key: string) : Promise<boolean>
+    {
+        try {
+            const reply = await this.client?.del(key)
+            if (reply === 1) { return true }
+            return false;
+        } catch (error: any) {
+            throw new Error(`${error.message}`);
+        }
+    }
+
     async disconnect() {
         try {
             await this.client?.disconnect()

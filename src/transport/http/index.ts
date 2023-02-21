@@ -3,6 +3,9 @@ import { handleRequest } from "./handle-request";
 import { trackRateMethod } from "../../methods/track-rate-method";
 import { getRatesMethod } from "../../methods/get-rate-method";
 
+/**
+ * Simple map to store all methods for simple look up
+ */
 let methods = new Map<string, any>();
 
 export const httpserver = http.createServer((request: http.IncomingMessage, response: http.ServerResponse<http.IncomingMessage>) => { 
@@ -11,6 +14,7 @@ export const httpserver = http.createServer((request: http.IncomingMessage, resp
     add_method('get_rate', getRatesMethod)
     add_method('track_rate', trackRateMethod)
 
+    //handle all responses
     handleRequest(request, response)
 })
 

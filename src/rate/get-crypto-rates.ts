@@ -1,6 +1,11 @@
 import rateApis from "../services/rate-apis"
-import { RateServiceInput } from "../services/rate-apis/interface"
+import { RateServiceInput, RateServiceOutput } from "../services/rate-apis/interface"
 
-export const getCryptoRates = async (ids: RateServiceInput[]) => {
+/**
+ * This function returns the rates of crypto inputed.
+ * @param ids names of the crypto currency to get rates for
+ * @returns list of cryptos and prices
+ */
+export const getCryptoRates = async (ids: RateServiceInput[]) : Promise<RateServiceOutput[]> => {
     return await rateApis.getCryptoRates(ids)
 }

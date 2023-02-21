@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 
+mongoose.set("strictQuery", false);
+
 /**
  * CryptoAttrs: interface to create new CryptoModel Document
  */
