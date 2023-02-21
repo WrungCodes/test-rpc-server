@@ -27,7 +27,8 @@ export class Redis implements CacheLayer {
     async put(key: string, value: any, expireAfter: number = 86400) 
     {
         try {
-         await this.client?.set(key, JSON.stringify(value), { EX: expireAfter })
+        //  await this.client?.set(key, JSON.stringify(value), { EX: expireAfter })
+         await this.client?.setEx(key, expireAfter, JSON.stringify(value))
         } catch (error: any) {
             throw new Error(`${error.message}`);
         }

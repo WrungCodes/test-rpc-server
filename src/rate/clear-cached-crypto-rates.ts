@@ -19,12 +19,11 @@ export const clearCryptoRates = async () => {
         /**
          * Check if the rate is present in the cache and get it if present.
          */
-        // if(await cache.check(key)){
-            // const value = 
-            await cache.delete(key)
-            // await cache.disconnect()
-            // return value
-        // }
+        if(await cache.check(key)){
+            const value = await cache.delete(key)
+            await cache.disconnect()
+            return value
+        }
     
         await cache.disconnect()
 
