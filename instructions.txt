@@ -1,3 +1,16 @@
+Assesment Question & Requirements
+
+Today you will design, build and produce an RPC API service. JSON RPC is a fundamental
+framework used throughout the blockchain industry, and is used under the hood by most of the
+top web3 frameworks out there. At Ziggy, you will be interfacing with JSON RPC both directly
+and indirectly every day.
+
+Your RPC API service will have a primary function to serve up Crypto price information. And will
+have the ability to be instructed to begin tracking new coins for its consumer.
+
+
+Instructions to run
+
 - install the dependencies using 'npm install'
 
 - turn on your docker and run 'docker-compose up' to start up your external dependencies
