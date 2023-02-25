@@ -1,7 +1,7 @@
-import { find_method } from ".";
 import { methodNotFound, methodRequired, paramsRequired } from "./error";
 import { handleInvalidRequest } from "./handle-invalid-request";
 import { jsonResponse } from "./json-response";
+import { find_method } from "./methods";
 
 /**
  * This function handles all post request and matches a method to its action .
@@ -40,7 +40,7 @@ export const handlePOST = async (request: any, response: any) => {
       try {
         const result = await func(request, response, params, id);
         return response.end(jsonResponse({result: result, error: null}, id));
-      } catch(error) {
+      } catch(error: any) {
         return response.end(jsonResponse({result: null, error}, id));
       }
     });

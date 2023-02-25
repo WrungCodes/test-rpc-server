@@ -9,6 +9,6 @@ export const getRates = async () => {
     try {
         return await getCryptoRates((await getAllCrypto()).map(crypto => { return { name: crypto.name } }))  
     } catch (error: any) {
-        throw new Error(`${error.massage}`);
+        throw new Error(`${error}`);
     }
 }
